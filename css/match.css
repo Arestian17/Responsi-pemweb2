@@ -1,0 +1,20 @@
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    border-radius: 15px;
+background: #FFD819;
+height: 46px;
+}
+
+td {
+    border-radius: 15px;
+background: #C0BAA0;
+height: 46px;
+}

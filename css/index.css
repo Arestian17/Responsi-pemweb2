@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumar+One&display=swap");
+
+body {
+  font-family: "Franklin Gothic Book";
+  background-size: auto;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  width: 75%;
+  justify-content: space-between;
+}
+
+li a {
+  color: #fff;
+  font-family: Franklin Gothic Book;
+  font-size: 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  justify-content: space-between;
+}
+
+li img {
+  width: 124px;
+  padding-right: 108px;
+}
+
+.active {
+  color: #ffd400;
+  text-decoration: underline;
+}
+
+.active:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+li a:hover {
+  color: #ffd400;
+  text-decoration: underline;
+}
+
+.bagian1 {
+  background-color: rgba(0, 0, 0, 0.98);
+  background-image: url(image/bglogin.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 139vh;
+  overflow: hidden;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.text {
+  margin-top: -20vh;
+}
+
+.text h1 {
+  color: #ffe97f;
+  font-family: "Abyssinica SIL", serif;
+  font-size: 88px;
+  font-weight: 100;
+  margin: 0px;
+}
+
+.hero-image {
+  margin-top: 120px;
+  width: 45%;
+}
+
+.hero-image img {
+  width: 560px;
+}
+
+.text h3 {
+  color: #fff;
+  font-family: "Kumar One", serif;
+  font-size: 49px;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 300;
+}
+
+button {
+  background-color: #ffd819;
+  width: 200px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+a button {
+  color: #000;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+hr {
+  width: 3px;
+  height: 268px;
+  background-color: #ffd819;
+  margin-left: 52px;
+  margin-top: -18vh;
+}
+
+.bagian2 {
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: space-between;
+    max-height: 43.7vh;
+}
+
+.bagian2 h1 {
+    color: #000;
+font-family: Franklin Gothic Heavy;
+font-size: 45px;
+text-transform: uppercase;
+text-align: center;
+margin-bottom: 0px;
+}
+
+.tengah, .tim1, .tim2 {
+    display: block;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+}
+
+.match img {
+    width: 160px;
+    height: 160px;
+    object-fit:contain;
+}
+
+.tengah p {
+  color: #000;
+font-family: Franklin Gothic Heavy;
+font-size: 60px;
+text-transform: uppercase;
+}
+
+.kiri img, .kanan img {
+  margin-top: 70px;
+  bottom: 0;
+  overflow:visible;
+  width: 300px;
+}
+
+.tim1 p, .tim2 p{
+    color: #000;
+font-family: Franklin Gothic Book;
+font-size: 23px;
+text-transform: capitalize;
+text-align: center;
+margin-top: -2rem;
+}
+
+.vs {
+    display: block;
+    text-align: center;
+}
+
+.vs p {
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+
+.vs button {
+  width: 119px;
+height: 36px;
+flex-shrink: 0;
+}
+
+.vs a button{
+  color: #000;
+font-family: 'Kumbh Sans', sans-serif;
+font-size: 12px;
+}
+
+.bagian3 {
+    background-image: url(image/bg2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px -16px 16px rgba(0, 0, 0, 0.2);
+    max-height: 75vh;
+}
+
+.bagian3 h1 {
+    color: #FFF;
+font-family: 'Franklin Gothic Heavy';
+font-size: 36px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-transform: uppercase;
+margin-top: 0px;
+padding: 50px 0px 0px 34px;
+margin-bottom: 55px;
+}
+
+.video {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+iframe {
+    border: 2px solid #fff;
+}
+
+.video3 p, .video3 h2, .video3 a img {
+  z-index: 2;
+  position: relative;
+}
+
+.video1 {
+  padding-left: 86px;
+  width: 30%;
+}
+
+.video2 {
+  width: 28%;
+}
+
+.video3 {
+  padding-right: 90px;
+  width: 26%;
+}
+
+.video3 p{
+  color: #E93535;
+font-family: 'Franklin Gothic Medium';
+font-size: 24px;
+margin-bottom: 0px;
+}
+
+.video3 h2 {
+  color: #FFF;
+font-family: 'Franklin Gothic';
+font-size: 32px;
+font-weight: 200;
+text-transform: uppercase;
+margin-bottom: 8px;
+margin-top: 8px;
+}
+
+.video1 h2, .video2 h2{
+  color: #FFF;
+font-family: 'Franklin Gothic';
+font-size: 24px;
+font-weight: 100;
+margin-bottom: 8px;
+}
+
+.left-video {
+  position: absolute;
+  top: 190vh;
+  left: 65vw;
+  height: auto;
+  z-index: 1;
+  width: 428px;
+}
+
+.bagian4 {
+  display: flex;
+  min-height: 100vh;
+}
+
+.gambar {
+  width: 40%;
+}
+
+.about {
+  width: 60%;
+  text-align: justify;
+}
+
+.about h1 {
+  color: #000;
+font-family: 'Franklin Gothic Heavy';
+font-size: 40px;
+text-transform: uppercase;
+}
+
+.about p {
+  color: #000;
+text-align: justify;
+font-family: 'Franklin Gothic Medium';
+font-size: 20px;
+text-transform: capitalize;
+}
+
+.image1 {
+  box-shadow: 26px 30px 0px #ffe97f;
+  position: relative;
+  z-index: 1;
+  left: 36px;
+  top: 7rem;
+  width: 300px;
+}
+
+.image2 {
+  box-shadow: 26px 30px 0px #ffe97f;
+  position: relative;
+  left: 15rem;
+  top: 1rem;
+  z-index: 2;
+  width: 254px;
+}
