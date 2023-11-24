@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&display=swap');
+
+body {
+    background-color: #F0EFEF;
+}
+
+.nav {
+    background-color: #ffffff;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.panah {
+    width: 38px;
+    flex-shrink: 0;
+    background-color: transparent;
+    border: none;
+    margin-left: 30px;
+}
+
+.my-profile {
+    display: flex;
+    justify-content: space-between;
+    color: #121211;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 44px;
+    font-style: normal;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.container {
+    margin-top: 70px;
+}
+
+.my-profile p {
+margin: 20px 44px;
+}
+
+.card {
+    width: 90%;
+    height: 70%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: auto;
+}
+
+.kanan, .kiri {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 30px 0px;
+}
+
+.image {
+    text-align: center;
+}
+
+.input {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 60px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 440px;
+    height: 54px;
+    flex-shrink: 0;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    color: #000;
+    font-family: Franklin Gothic Book;
+    font-size: 30px;
+    margin: 0px 0px 4px 0px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    border: 3px solid black;
+    margin-top: 28px;
+}
+
+.save {
+    border-radius: 45px;
+    background: #FFE94E;
+    border: none;
+    width: 100px;
+    height: 42px;
+    color: #000;
+    font-family: Franklin Gothic Book;
+    font-size: 30px;
+    text-transform: capitalize;
+    margin: auto 60px;
+}
+
+.update-image {
+    position: relative;
+    z-index: 2;
+    top: -40px;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.update-image:hover {
+    background-color: #F0EFEF;
+}
+
+.back {
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+    background-color: transparent;
+    border: none;
+}

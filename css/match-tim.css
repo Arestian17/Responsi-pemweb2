@@ -160,12 +160,19 @@ body {
   border-radius: 3px;
   border: 1px solid #35922d;
   background: #fce15c;
+  color: #000;
+  font-family: 'Franklin Gothic Medium';
+  font-size: 25px;
+  text-transform: capitalize;
+}
+
+.go {
+  width: 10%;
 }
 
 .negara {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   margin-left: 10px;
 }
@@ -176,6 +183,10 @@ body {
   flex-shrink: 0;
   object-fit: contain;
   margin-right: 5px;
+}
+
+.profile{
+  width: 65%;
 }
 
 .profile span {

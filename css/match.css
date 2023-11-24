@@ -1,20 +1,163 @@
-.top {
-    display: flex;
-    justify-content: space-between;
+body {
+  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../image/bglogin.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-table {
+.nav {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255, 0.5);
+  height: 90px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.panah {
+  width: 38px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+  margin-left: 30px;
+  color: #fff;
+}
+
+.back button {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  background-color: transparent;
+  border: none;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  width: 10%;
+}
+
+.profile img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
+.search input {
+  width: 477px;
+  height: 44px;
+  flex-shrink: 0;
+  background: #efebeb;
+  border-radius: 15px;
+  border: none;
+  padding-left: 10px;
+}
+
+.logo-search {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-left: -40px;
+  align-items: center;
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.title p {
+    color: #fff;
+    font-family: IBM Plex Serif;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.tabel {
     width: 100%;
+    margin: auto;
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 10px;
+    color: #fff;
+    min-height: 60vh;
+}
+table {
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
 }
 
 th {
-    border-radius: 15px;
-background: #FFD819;
-height: 46px;
+    color: #000;
+    font-family: 'Franklin Gothic medium', sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    border-bottom: 1px solid #000;
+    height: 52px;
+    text-align: center;
 }
 
 td {
+    color: #000;
+    font-family: 'Andada Pro', serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    height: 52px;
+    text-align: center;
+}
+
+.preview {
     border-radius: 15px;
-background: #C0BAA0;
-height: 46px;
+    background-color: #FFE94E;
+    width: 10%;
+}
+
+.add {
+    border-radius: 15px;
+    background-color: #FFE94E;
+    width: 116px;
+    height: 48px;
+    flex-shrink: 0;
+    color: #000;
+    font-family: 'Forum';
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 10px 20px;
+}
+
+.add img {
+    width: 42px;
 }

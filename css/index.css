@@ -26,7 +26,7 @@ ul {
 
 li a {
   color: #fff;
-  font-family: Franklin Gothic Book;
+  font-family: 'Franklin Gothic Book';
   font-size: 24px;
   text-decoration: none;
   text-transform: uppercase;
@@ -55,7 +55,7 @@ li a:hover {
 
 .bagian1 {
   background-color: rgba(0, 0, 0, 0.98);
-  background-image: url(image/bglogin.png);
+  background-image: url(../image/bglogin.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -159,7 +159,7 @@ margin-bottom: 0px;
 
 .tengah p {
   color: #000;
-font-family: Franklin Gothic Heavy;
+font-family: 'Franklin Gothic Heavy';
 font-size: 60px;
 text-transform: uppercase;
 }
@@ -173,7 +173,7 @@ text-transform: uppercase;
 
 .tim1 p, .tim2 p{
     color: #000;
-font-family: Franklin Gothic Book;
+font-family: 'Franklin Gothic Book';
 font-size: 23px;
 text-transform: capitalize;
 text-align: center;
@@ -203,7 +203,7 @@ font-size: 12px;
 }
 
 .bagian3 {
-    background-image: url(image/bg2.png);
+    background-image: url(../image/bg2.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -306,6 +306,7 @@ margin-bottom: 8px;
 font-family: 'Franklin Gothic Heavy';
 font-size: 40px;
 text-transform: uppercase;
+margin-top: 40px;
 }
 
 .about p {
@@ -314,6 +315,7 @@ text-align: justify;
 font-family: 'Franklin Gothic Medium';
 font-size: 20px;
 text-transform: capitalize;
+margin: 0px 38px;
 }
 
 .image1 {
