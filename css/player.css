@@ -129,3 +129,21 @@ body::before {
 hr {
     border: 1px solid #000;
 }
+
+.addplayer {
+    background-color: #FFE94E;
+    width: 130px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 0px;
+}
+
+.addplayer a{
+    color: #000;
+    text-decoration: none;
+    font-family: 'Franklin Gothic', sans-serif;
+    font-size: 22px;
+
+}

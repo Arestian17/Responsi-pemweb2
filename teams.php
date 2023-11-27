@@ -21,7 +21,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Teams</title>
+    <link rel="icon" href="image/voli.ico">
     <link rel="stylesheet" href="css/teams.css">
 </head>
 <body>
@@ -53,6 +54,8 @@
             </table>
         <?php endif; ?>
         <?php if(isset($_SESSION['admin'])) : ?>
+            <form action="" method="post">
+            <a href="addtim.php"><button type="submit" name="add" class="add">Add Teams</button></a>
             <table>
                 <tr>
                     <th>No</th>
@@ -64,19 +67,18 @@
                 <?php
                 $no = 1;
                     while($row = $result->fetch_assoc()) {
-                        echo "<form action='' method='post'>";
                         echo "<tr>";
                         echo "<td><input type='text' name='id' value=".$row['id']." hidden>" . $no . "</td>";
                         echo "<td><img src='" . $row['logo'] . "' alt='tim'></td>";
                         echo "<td><a href='players.php?id=" . $row['id'] . "'>" . $row['name'] . "</a></td>";
                         echo "<td><input type='number' name='poin' value=".$row['poin']."></td>";
-                        echo "<td><button type='submit' name='submit'>Edit</button> <a href='delete.php?id=" . $row['id'] . "'><button>Delete</button></a></td>";
+                        echo "<td><button type='submit' name='submit' class='edit'>Edit</button> <a href='delete.php?id=" . $row['id'] . "'><button class='delete'>Delete</button></a></td>";
                         echo "</tr>";
-                        echo "</form>";
                         $no++;
                     }
                 ?>
             </table>
+            </form>
         <?php endif; ?>
     </div>
     
