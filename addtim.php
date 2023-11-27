@@ -1,11 +1,32 @@
 <?php
-    session_start();
-    include('db.php');
+include 'db.php';
+session_start();
 
-    if(!isset($_SESSION["username"])){
-        header("Location: login.php");
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Tangkap data dari formulir
+    $teamName = $_POST["teamName"];
+    $teamLogo = $_FILES["teamLogo"]["name"];
+
+    // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
+    $teamLogoTargetDir = "uploads/team_logos/";
+    $teamLogoTargetFile = $teamLogoTargetDir . basename($_FILES["teamLogo"]["name"]);
+    move_uploaded_file($_FILES["teamLogo"]["tmp_name"], $teamLogoTargetFile);
+
+    // Query untuk insert data ke tabel teams
+    $sql = "INSERT INTO teams (name, logo) VALUES ('$teamName', '$teamLogo')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Tim berhasil ditambahkan.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

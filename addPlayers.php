@@ -1,11 +1,39 @@
-<?php 
+<?php
 include 'db.php';
 session_start();
-if(!isset($_SESSION["username"])){
+
+if (!isset($_SESSION["username"])) {
     header("Location: login.php");
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Tangkap data dari formulir
+    $name = $_POST["name"];
+    $number = $_POST["number"];
+    $nation = $_POST["nation"];
+    $age = $_POST["age"];
+    $height = $_POST["height"];
+    $weight = $_POST["weight"];
+
+    // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
+    $foto = $_FILES["foto"]["name"];
+
+    // Upload file foto
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
+    move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
+
+    // Query untuk insert data ke tabel players
+    $sql = "INSERT INTO players (name, number, nation, age, height, weight, photo) VALUES ('$name', '$number', '$nation', '$age', '$height', '$weight', '$foto')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Pemain berhasil ditambahkan.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

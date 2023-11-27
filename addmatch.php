@@ -5,7 +5,42 @@
     if(!isset($_SESSION["username"])){
         header("Location: login.php");
     }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Tangkap data dari formulir
+        $date = $_POST["date"];
+        $location = $_POST["location"];
+
+        $score1 = $_POST["score1"];
+        $name1 = $_POST["name1"];
+        // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
+        $logo1 = $_FILES["logo1"]["name"];
+
+        $score2 = $_POST["score2"];
+        $name2 = $_POST["name2"];
+        // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
+        $logo2 = $_FILES["logo2"]["name"];
+
+        // Upload file logo1
+        $target_dir = "uploads/";
+        $target_file1 = $target_dir . basename($_FILES["logo1"]["name"]);
+        move_uploaded_file($_FILES["logo1"]["tmp_name"], $target_file1);
+
+        // Upload file logo2
+        $target_file2 = $target_dir . basename($_FILES["logo2"]["name"]);
+        move_uploaded_file($_FILES["logo2"]["tmp_name"], $target_file2);
+
+        // Query untuk insert data ke tabel matches
+        $sql = "INSERT INTO matches (team1_score, team1_name, team1_logo, team2_score, team2_name, team2_logo, match_date, location) VALUES ('$score1', '$name1', '$logo1', '$score2', '$name2', '$logo2', '$date', '$location')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Pertandingan berhasil ditambahkan.";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
