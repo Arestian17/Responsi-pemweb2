@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
     <link rel="icon" href="image/voli.ico">
     <title>Register</title>
 </head>
-<body style="background-color: rgba(0, 0, 0, 0.9);">
+<body style="background-color: rgba(0,0,0,0.92);">
     <div class="container">
         <h1>Sign up</h1>
         <form action="" method="POST">
@@ -49,6 +49,7 @@ if(isset($_POST['submit'])){
             <label for="confirm_password">Confirm Password</label>
             <input type="password" name="confirm_password" id="confirm_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
             <button type="submit" style="margin-top: 12px;" name="submit">Sign up</button>
+            <p>Already have an account? <a href="login.php">Sign in</a></p>
         </form>
     </div>
 </body>

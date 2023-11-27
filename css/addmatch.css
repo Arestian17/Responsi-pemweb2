@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Poppins&display=swap");
+body {
+  background-color: rgba(0, 0, 0, 0.88);
+  background-image: url(../image/bglogin.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  background-color: #ffffff;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.panah {
+  width: 38px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+  margin-left: 30px;
+}
+
+.back {
+  width: 31px;
+  height: 31px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.container {
+  width: 86%;
+  margin: 110px auto;
+  background-color: #fff;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tim {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  justify-content: space-around;
+  margin-left: 30px;
+}
+
+.time {
+  background-color: #d9d9d9;
+  width: 150px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: -108px;
+}
+
+.kiri {
+  width: 50%;
+  display: block;
+}
+
+hr {
+  width: 90%;
+}
+
+.label {
+  display: block;
+}
+
+#location {
+  margin-right: -112px;
+  width: 340px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 0px;
+  border: 1px solid #000;
+}
+
+.header {
+  color: #000;
+  font-family: IBM Plex Serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 36px 0px;
+}
+
+.time label {
+  color: #000;
+  font-family: IBM Plex Serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.tim label,
+.location {
+  color: #000;
+  font-family: IBM Plex Serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+button[type="submit"] {
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: #ffe94e;
+  width: 100px;
+  height: 40px;
+  flex-shrink: 0;
+  margin: 40px 50px;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  text-transform: capitalize;
+  padding-top: 0px;
+}
+
+input[type="time"] {
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+}
+
+.tim p {
+  color: #000;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: normal;
+  text-decoration: underline;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+#score {
+  width: 110px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+#name {
+  width: 390px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 0px;
+  border: 1px solid #000;
+}
+
+#logo {
+  border: 1px solid #000;
+  width: 390px;
+  height: 28px;
+  flex-shrink: 0;
+  padding: 8px 0px 0px 5px;
+  border-radius: 0px;
+}

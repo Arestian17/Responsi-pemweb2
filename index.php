@@ -1,14 +1,20 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    header("location: login.php");
-}
-
 include 'db.php';
 
-$query = "SELECT * FROM teams";
-$result = $conn->query($query);
+if(isset($_POST['submit'])){
+    $link1 = $_POST['link1'];
+    $link2 = $_POST['link2'];
+    $link3 = $_POST['link3'];
+    $insertQuery = "INSERT INTO video (link) VALUES ('$link1'),('$link2'),('$link3')";
+    $result = $conn->query($insertQuery);
+}
+
+$video1 = $conn->query("SELECT * FROM video ORDER BY id DESC LIMIT 1")->fetch_assoc();
+$video2 = $conn->query("SELECT * FROM video ORDER BY id DESC LIMIT 1 OFFSET 1")->fetch_assoc();
+$video3 = $conn->query("SELECT * FROM video ORDER BY id DESC LIMIT 1 OFFSET 2")->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +32,15 @@ $result = $conn->query($query);
             <ul>
                 <li><img src="image/voli.png" alt="logo"></li>
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="tiket.php">Contact</a></li>
-                <li><a href="login.php">Sign in</a></li>
+                <?php if(isset($_SESSION["login"])){
+                    echo '<li><a href="matches.php">Matches</a></li>';
+                    echo '<li><a href="teams.php">Teams</a></li>';
+                    echo '<li><a href="logout.php">Log out</a></li>';
+                }else if(!isset($_SESSION["login"])){
+                    echo '<li><a href="#about">About</a></li>';
+                    echo '<li><a href="#contact">Contact</a></li>';
+                    echo '<li><a href="login.php">Login</a></li>';
+                } ?>
             </ul>
         </nav>
         <div class="hero">
@@ -71,22 +83,39 @@ $result = $conn->query($query);
     <div class="bagian3">
         <h1>Featured videos</h1>
         <div class="video">
+            <form action="" method="post">
             <div class="video1">
-                <iframe width="324" height="164" src="https://www.youtube.com/embed/DS4iVV8_cp4?si=P3bXDycUNaD9Ag0L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <h2>JPN VS BRA - Full Match <br> Men's VNL 2022</h2>
-                <a href="https://www.youtube.com/embed/DS4iVV8_cp4?si=P3bXDycUNaD9Ag0L" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
+                <iframe width="300" height="164" src="<?php echo htmlspecialchars($video1['link']); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <h2>Trending Videos This Week!</h2>
+                <a href="<?php echo htmlspecialchars($video1['link']); ?>" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
+                <?php if(isset($_SESSION["admin"])) : ?>
+                    <label for="link1">Video 1 URL:</label>
+                    <input type="text" id="link1" name="link1" value="<?php echo htmlspecialchars($video1['link']); ?>">
+                <?php endif ?>
             </div>
             <div class="video2">
-                <iframe width="250" height="177" src="https://www.youtube.com/embed/BxzZjhqF_HQ?si=tqtsh_ywSnrkYl4k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <h2>FINAL!! INDONESIA VS FILIPINA SEA GAMES 2019</h2>
-                <a href="https://www.youtube.com/embed/BxzZjhqF_HQ?si=tqtsh_ywSnrkYl4k" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
+                <iframe width="300" height="164" src="<?php echo htmlspecialchars($video2['link']);?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <h2>Latest Viral Volleyball Video!</h2>
+                <a href="<?php echo htmlspecialchars($video2['link']);?>" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
+                <?php if(isset($_SESSION["admin"])) : ?>
+                    <label for="link2">Video 2 URL:</label>
+                    <input type="text" id="link2" name="link2" value="<?php echo htmlspecialchars($video2['link']);?>">
+                <?php endif ?>
             </div>
             <div class="video3">
-                <p>Trending</p>
-                <h2>High jump over <br>the net</h2>
-                <a href="https://www.youtube.com/embed/DS4iVV8_cp4?si=P3bXDycUNaD9Ag0L" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
-                <img src="image/lompatan tinggi 1.png" alt="gambar lompatan" class="left-video">
+                <iframe width="300" height="164" src="<?php echo htmlspecialchars($video3['link']);?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <h2>Current Top Videos!</h2>
+                <a href="<?php echo htmlspecialchars($video3['link']); ?>" target="_blank"><img src="image/play videos 1.png" alt="play"></a>
+                <?php if(isset($_SESSION["admin"])) : ?>
+                    <label for="link3">Video 3 URL:</label>
+                    <input type="text" id="link3" name="link3" value="<?php echo htmlspecialchars($video3['link']);?>">
+                <?php endif ?>
             </div>
+        </div>
+        <?php if(isset($_SESSION["admin"])) : ?>
+            <button type="submit" name="submit">Submit</button>
+        <?php endif ?>
+        </form>
     </div>
     <div class="bagian4">
         <div class="gambar">
@@ -102,5 +131,22 @@ $result = $conn->query($query);
             <p>The sport's international appeal soared, leading to its inclusion in the Olympic Games in 1964. Since then, volleyball has seen continuous growth, with various championships, leagues, and tournaments held worldwide, showcasing the skill, athleticism, and strategic play inherent in this dynamic sport.</p>
         </div>
     </div>
+    <footer>
+        <div class="logo">
+            <img src="image/voli.png" alt="logo">
+            <span>Volleyball</span>
+        </div>
+        <div class="footer">
+            <div class="social" id="contact">
+                <a href="https://www.facebook.com/"><img src="image/facebook.png" alt="facebook"></a>
+                <a href="https://www.youtube.com/"><img src="image/youtube.png" alt="twitter"></a>
+                <a href="https://www.instagram.com/"><img src="image/instagram.png" alt="instagram"></a>
+            </div>
+            <div class="kalimat">
+                <p style="margin: auto; text-align: center;   margin-top: 40px;" class="atas">Terms of us - Privacy.</p>
+                <p style="margin: auto; text-align: center;" class="bawah">© 2023</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

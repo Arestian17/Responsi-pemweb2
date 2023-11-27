@@ -1,6 +1,5 @@
 body {
-  background-color: #fff;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 1);
   background-image: url(../image/bglogin.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -13,10 +12,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: transparent;
   height: 90px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.3);
 }
 
 .back {
@@ -99,10 +98,21 @@ body {
     margin-left: 10px;
 }
 
+.add a{
+  text-decoration: none;
+  width: 116px;
+  align-items: center;
+  color: #000;
+  font-family: 'Forum';
+  font-size: 23px;
+  display: flex;
+  align-items: center;
+}
+
 .tabel {
     width: 100%;
     margin: auto;
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgb(255, 255, 255, 0.7);
     border-radius: 10px;
     color: #fff;
     min-height: 60vh;
@@ -150,11 +160,7 @@ td {
     width: 116px;
     height: 48px;
     flex-shrink: 0;
-    color: #000;
-    font-family: 'Forum';
-    font-size: 23px;
-    display: flex;
-    align-items: center;
+    border: none;
     margin: 0px 0px 10px 20px;
 }
 

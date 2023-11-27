@@ -1,14 +1,16 @@
 <?php
 include 'db.php';
-
-if (isset($_GET['team_id'])) {
-    $team_id = $_GET['team_id'];
-    $query = "SELECT * FROM players WHERE team_id = $team_id";
-    $result = $conn->query($query);
-    $team_name = $conn->query("SELECT name FROM teams WHERE id = $team_id")->fetch_assoc()['name'];
-} else {
-    header("location: index.php");
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
 }
+
+$id_tim = $_GET["id"];
+$result = mysqli_query($conn,"SELECT * FROM players WHERE team_id = '$id_tim'");
+
+$result2 = mysqli_query($conn,"SELECT * FROM teams WHERE id = '$id_tim'");
+$row2 = mysqli_fetch_array($result2);
+
 ?>
 
 <!DOCTYPE html>
@@ -23,40 +25,45 @@ if (isset($_GET['team_id'])) {
 <body>
     <div class="nav">
         <div class="back">
-            <a href="index.php"><img src="image/panah 1.png" alt="back" class="panah"></a>
+            <a href="tim.php"><img src="image/panah 1.png" alt="back" class="panah"></a>
         </div>
-        <img src="image/club1.png" alt="logo club" class="logo-club">
+        <img src="<?php echo $row2['logo']?>" alt="logo club" class="logo-club">
     </div>
+    
     <div class="container">
-        <div class="nickname">
-            <p class="nomor">17</p>
-            <p class="nama">Malson Holgate</p>
-        </div>
-        <div class="photo">
-            <img src="image/atlet tim 1.png" alt="photo">
-        </div>
-        <div class="profile">
-            <div class="kiri">
-                <div class="name">
-                    <p>Malson Holgate</p>
-                    <p>17</p>
-                </div>
-                <hr>
-                <p class="negara">
-                    <img src="image/bendera jepang 11.png" alt="bendera">
-                    <span>Japan</span>
-                </p>
-                <hr>
-                <p>20 Years Old</p>
-                <hr>
-            </div>
-            <div class="kanan">
-                <p>Height : 192 cm</p>
-                <hr>
-                <p>Weight : 60 kg</p>
-                <hr>
-            </div>
-        </div>
+    <?php
+    while($row = mysqli_fetch_assoc($result)){
+        echo '<div class="nickname">';
+        echo '<p class="nomor">' . $row["number"] . '</p>';
+        echo '<p class="nama">' . $row["name"] . '</p>';
+        echo '</div>';
+        echo '<div class="photo">';
+        echo '<img src="' . $row['photo'] . '" alt="photo">';
+        echo '</div>';
+        echo '<div class="profile">';
+        echo '<div class="kiri">';
+        echo '<div class="name">';
+        echo '<p>' . $row['name'] . '</p>';
+        echo '<p>'.$row['number'].'</p>';
+        echo '</div>';
+        echo '<hr>';
+        echo '<p class="negara">';
+        echo '<span>' . $row['nation'] . '</span>';
+        echo '</p>';
+        echo '<hr>';
+        echo '<p>Age : ' . $row['age'] . '</p>';
+        echo '<hr>';
+        echo '</div>';
+        echo '<div class="kanan">';
+        echo '<p>Height : ' . $row['height'] . ' cm</p>';
+        echo '<hr>';
+        echo '<p>Weight : ' . $row['weight'] . ' kg</p>';
+        echo '<hr>';
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
     </div>
+
 </body>
 </html>

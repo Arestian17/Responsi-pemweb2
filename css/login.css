@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(0, 0, 0, 0.98);
+  background-color: rgba(0, 0, 0, 0.96);
   background-image: url("../image/bglogin.png");
   background-position: center;
   font-family: "Franklin Gothic Book";
@@ -23,13 +23,12 @@ h1 {
 
 .container {
   display: block;
-  margin: auto;
   width: 38%;
   text-align: center;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin-top: 80px;
+  margin: 80px auto;
 }
 
 input[type="text"],
@@ -39,8 +38,8 @@ input[type="email"] {
   border: 7px solid #ffe94e;
   background: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 100%
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.05) 100%
     ),
     #fff;
   width: 100%;
@@ -73,7 +72,7 @@ button[type="submit"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 31px 0px;
+  margin: 31px 0px 20px 0px;
 }
 
 button[type="submit"]:hover {
@@ -86,38 +85,38 @@ a {
   font-size: 22px;
   text-transform: capitalize;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 676px) {
-    h1 {
-        font-size: 36px;
-    }
-    
-    .container {
-        width: 85%;
-        margin-top: 50px;
-        text-align: center;
-    }
-    
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-        width: 95%;
-        height: 30px;
-        margin: 10px 0px 12px 0px;
-        font-size: 14px;
-    }
-    
-    label,
-    p {
-        font-size: 18px;
-    }
-    
-    button[type="submit"] {
-        width: 120px;
-        height: 36px;
-        font-size: 20px;
-        margin: 20px 0px;
-    }
-}
+  h1 {
+    font-size: 36px;
+  }
 
+  .container {
+    width: 85%;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 95%;
+    height: 30px;
+    margin: 10px 0px 12px 0px;
+    font-size: 14px;
+  }
+
+  label,
+  p {
+    font-size: 18px;
+  }
+
+  button[type="submit"] {
+    width: 120px;
+    height: 36px;
+    font-size: 20px;
+    margin: 20px 0px;
+  }
+}

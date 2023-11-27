@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&display=swap');
 
 body {
-    background-color: #F0EFEF;
+    background-color: rgba(0, 0, 0, 0.85);
+    background-image: url("../image/bglogin.png");
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .nav {
@@ -13,6 +19,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -1;
 }
 
 .panah {
@@ -40,15 +47,16 @@ body {
 
 .my-profile p {
 margin: 20px 44px;
+color: #FFF;
 }
 
 .card {
     width: 90%;
-    height: 70%;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: block;
     margin: auto;
+    min-height: 110vh;
 }
 
 .kanan, .kiri {
@@ -70,12 +78,14 @@ margin: 20px 44px;
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     width: 440px;
     height: 54px;
     flex-shrink: 0;
-    font-size: 32px;
+    font-size: 25px;
     margin-bottom: 20px;
+    padding: 0px 8px;
 }
 
 label {

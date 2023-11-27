@@ -1,14 +1,19 @@
 <?php
 include 'db.php';
+session_start();
 
-$query = "SELECT m.*, t1.name AS team1_name, t2.name AS team2_name FROM matches m
-          INNER JOIN teams t1 ON m.team1_id = t1.id
-          INNER JOIN teams t2 ON m.team2_id = t2.id";
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+}
+
+$query = "SELECT * FROM matches ORDER BY id ASC";
 $result = $conn->query($query);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +21,13 @@ $result = $conn->query($query);
     <link rel="icon" href="image/voli.ico">
     <title>Match</title>
 </head>
+
 <body>
     <div class="nav">
         <div class="back">
-            <a href="index.php"><button><img src="image/panah 1.png" alt="back" class="panah"></button></a>
+            <a href="index.php">
+                <button><img src="image/panah 1.png" alt="back" class="panah"></button>
+            </a>
         </div>
         <div class="search">
             <input type="text" id="searchInput" placeholder="Search...">
@@ -33,59 +41,90 @@ $result = $conn->query($query);
         <div class="title">
             <p>Match list</p>
             <form action="" method="post">
-                <a href="add.php"><button type="submit" class="add"><img src="image/add 1.png" alt=""> Add</button></a>
+                <button type="submit" class="add"><a href="add.php"><img src="image/add 1.png" alt=""> Add</a></button>
             </form>
         </div>
+        <?php if (!isset($_SESSION['admin'])) : ?>
+            <div class="tabel">
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Team</th>
+                        <th>Score</th>
+                        <th>Team</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Preview</th>
+                    </tr>
+                    <?php
+                    $no = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<tr>';
+                        echo '<td>' . $no . '</td>';
+                        // Fetch and display team names
+                        $team1_query = "SELECT name FROM teams WHERE id = " . $row['team1_id'];
+                        $team1_result = $conn->query($team1_query);
+                        $team1_name = $team1_result->fetch_assoc()['name'];
+
+                        $team2_query = "SELECT name FROM teams WHERE id = " . $row['team2_id'];
+                        $team2_result = $conn->query($team2_query);
+                        $team2_name = $team2_result->fetch_assoc()['name'];
+
+                        echo '<td>' . $team1_name . '</td>';
+                        echo '<td>' . $row['score_team1'] . ' : ' . $row['score_team2'] . '</td>';
+                        echo '<td>' . $team2_name . '</td>';
+                        echo '<td>' . $row['time'] . '</td>';
+                        echo '<td>' . $row['location'] . '</td>';
+                        echo '<td class="preview">' . $row['preview'] . '</td>';
+                        echo '</tr>';
+                        $no++;
+                    }
+                    ?>
+                </table>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['admin'])) : ?>
         <div class="tabel">
-            <table>
-                <tr>
-                    <th>No</th>
-                    <th>Team</th>
-                    <th>Score</th>
-                    <th>Team</th>
-                    <th>Time</th>
-                    <th>Location</th>
-                    <th>Preview</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Society</td>
-                    <td>0:0</td>
-                    <td>Estro</td>
-                    <td>20.00</td>
-                    <td>GBK</td>
-                    <td class="preview">Open now</td>
-                    <td>
-                        <a href="edit">
-                            <button>Edit</button>
-                        </a>
-                        <a href="delete">
-                            <button>Delete</button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Society</td>
-                    <td>0:0</td>
-                    <td>Estro</td>
-                    <td>20.00</td>
-                    <td>GBK</td>
-                    <td class="preview">Open now</td>
-                </tr>
-                <tr>
-                    <td>3 </td>
-                    <td>Society</td>
-                    <td>0:0</td>
-                    <td>Estro</td>
-                    <td>20.00</td>
-                    <td>GBK</td>
-                    <td class="preview">Open now</td>
-                </tr>
-                
-            </table>
+            <form action="" method="post">
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Team</th>
+                        <th>Score</th>
+                        <th>Team</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Preview</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php
+                    $no = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<tr>';
+                        echo '<td><input type="text" name="id[]" value="' . $row['id'] . '" hidden>' . $no . '</td>';
+                        $team1_query = "SELECT name FROM teams WHERE id = " . $row['team1_id'];
+                        $team1_result = $conn->query($team1_query);
+                        $team1_name = $team1_result->fetch_assoc()['name'];
+
+                        $team2_query = "SELECT name FROM teams WHERE id = " . $row['team2_id'];
+                        $team2_result = $conn->query($team2_query);
+                        $team2_name = $team2_result->fetch_assoc()['name'];
+
+                        echo '<td><input type="text" name="team1_name[]" value="' . $team1_name . '"></td>';
+                        echo '<td><input type="text" name="score_team1[]" value="' . $row['score_team1'] . '"> : <input type="text" name="score_team2[]" value="' . $row['score_team2'] . '"></td>';
+                        echo '<td><input type="text" name="team2_name[]" value="' . $team2_name . '"></td>';
+                        echo '<td><input type="text" name="time[]" value="' . $row['time'] . '"></td>';
+                        echo '<td><input type="text" name="location[]" value="' . $row['location'] . '"></td>';
+                        echo '<td><input type="text" name="preview[]" value="' . $row['preview'] . '"></td>';
+                        echo '<td><button type="submit" name="submit">Edit</button> <a href="delete.php?id=' . $row['id'] . '"><button>Delete</button></a></td>';
+                        echo '</tr>';
+                        $no++;
+                    }
+                    ?>
+                </table>
+            </form>
         </div>
+    <?php endif; ?>
     </div>
     <script>
         var searchInput = document.getElementById("searchInput");
@@ -104,7 +143,9 @@ $result = $conn->query($query);
                 }
             }
         }
+
         searchInput.addEventListener("input", search);
     </script>
 </body>
+
 </html>

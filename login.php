@@ -2,6 +2,10 @@
 include 'db.php';
 
 session_start();
+if(isset($_SESSION["login"])){
+    header("Location: index.php");
+    exit;
+}
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
@@ -12,12 +16,15 @@ if (isset($_POST['submit'])) {
 
     if ($result && $result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-
         if (isset($row['password'])) {
             $dbpassword = $row['password'];
-
             if (password_verify($password, $dbpassword)) {
+                $_SESSION["login"] = true;
                 $_SESSION['username'] = $username;
+                $role = $row["role"];
+                if($role == "admin"){
+                    $_SESSION["admin"] = true;
+                }
                 header("location: index.php");
                 exit();
             } else {
@@ -61,7 +68,7 @@ if (isset($_POST['submit'])) {
             <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
             <button type="submit" name="submit">Sign in</button>
         </form>    
-        <p>No account? <a href="register.php">Sign up</a></p>
+        <p>Didn't have an account? <a href="register.php">Sign up</a></p>
     </div>
 </body>
 </html>
