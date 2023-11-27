@@ -14,6 +14,7 @@ if(!isset($_SESSION["username"])){
     <link rel="icon" href="image/voli.ico">
     <title>Add Player</title>
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Poppins&display=swap");
         body {
             font-family: Arial, sans-serif;
             background-color: rgba(0, 0, 0, 0.9);
@@ -22,12 +23,13 @@ if(!isset($_SESSION["username"])){
 
         nav {
             background-color: #fff;
-            padding: 10px;
+            width: 100%;
+            height: 60px;
             position: absolute;
             top: 0;
             left: 0;
-            margin: 20px;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
         }
 
         nav a {
@@ -39,11 +41,12 @@ if(!isset($_SESSION["username"])){
             width: 30px;
             height: 30px;
             object-fit: contain;
+            margin-left: 20px;
         }
 
         .container {
-            max-width: 600px;
-            margin: 30px auto;
+            max-width: 70%;
+            margin: 90px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
@@ -52,6 +55,8 @@ if(!isset($_SESSION["username"])){
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 42px;
         }
 
         form {
@@ -61,6 +66,13 @@ if(!isset($_SESSION["username"])){
 
         label {
             margin-bottom: 10px;
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            text-transform: capitalize;
         }
 
         input[type="number"],

@@ -41,7 +41,7 @@ $result = $conn->query($query);
         <div class="title">
             <p>Match list</p>
             <form action="" method="post">
-                <button type="submit" class="add"><a href="add.php"><img src="image/add 1.png" alt=""> Add</a></button>
+                <button type="submit" class="add"><a href="addmatch.php"><img src="image/add 1.png" alt=""> Add</a></button>
             </form>
         </div>
         <?php if (!isset($_SESSION['admin'])) : ?>

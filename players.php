@@ -25,7 +25,7 @@ $row2 = mysqli_fetch_array($result2);
 <body>
     <div class="nav">
         <div class="back">
-            <a href="tim.php"><img src="image/panah 1.png" alt="back" class="panah"></a>
+            <a href="teams.php"><img src="image/panah 1.png" alt="back" class="panah"></a>
         </div>
         <img src="<?php echo $row2['logo']?>" alt="logo club" class="logo-club">
     </div>
@@ -55,6 +55,8 @@ $row2 = mysqli_fetch_array($result2);
         echo '<hr>';
         echo '</div>';
         echo '<div class="kanan">';
+        echo '<button class="addplayer"><a href="addPlayers.php?id=' . $row['id'] . '">Add Player</a></button>';
+        echo '<hr>';
         echo '<p>Height : ' . $row['height'] . ' cm</p>';
         echo '<hr>';
         echo '<p>Weight : ' . $row['weight'] . ' kg</p>';
