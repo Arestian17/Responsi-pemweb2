@@ -6,6 +6,7 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
 }
 
+<<<<<<< Updated upstream
 $query = "SELECT * FROM matches ORDER BY id DESC";
 $result = $conn->query($query);
 
@@ -19,6 +20,59 @@ if(isset($_POST['delete'])){
         exit();
     }
 }
+=======
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit'])) {
+        // Tangkap data dari formulir
+        $id = $_POST['id'];
+        $team1_name = $_POST['team1_name'];
+        $score_team1 = $_POST['score_team1'];
+        $score_team2 = $_POST['score_team2'];
+        $team2_name = $_POST['team2_name'];
+        $time = $_POST['time'];
+        $location = $_POST['location'];
+        $preview = $_POST['preview'];
+
+        // Update data pertandingan
+        for ($i = 0; $i < count($id); $i++) {
+            $updateQuery = "UPDATE matches SET 
+                            team1_id = (SELECT id FROM teams WHERE name = '$team1_name[$i]'),
+                            score_team1 = '$score_team1[$i]',
+                            score_team2 = '$score_team2[$i]',
+                            team2_id = (SELECT id FROM teams WHERE name = '$team2_name[$i]'),
+                            time = '$time[$i]',
+                            location = '$location[$i]',
+                            preview = '$preview[$i]'
+                            WHERE id = '$id[$i]'";
+            
+            $result = $conn->query($updateQuery);
+
+            if (!$result) {
+                echo "Error updating record: " . $conn->error;
+            }
+        }
+
+        echo "<script>alert('Data berhasil diupdate!'); window.location.href='match.php';</script>";
+    }
+
+    if (isset($_POST['delete'])) {
+        $idToDelete = $_POST['idToDelete'];
+
+        // Hapus data pertandingan
+        $deleteQuery = "DELETE FROM matches WHERE id = '$idToDelete'";
+        $result = $conn->query($deleteQuery);
+
+        if (!$result) {
+            echo "Error deleting record: " . $conn->error;
+        }
+
+        echo "<script>alert('Data berhasil dihapus!'); window.location.href='match.php';</script>";
+    }
+}
+
+$query = "SELECT * FROM matches ORDER BY id ASC";
+$result = $conn->query($query);
+>>>>>>> Stashed changes
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +125,7 @@ if(isset($_POST['delete'])){
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<tr>';
                         echo '<td>' . $no . '</td>';
-                        // Fetch and display team names
+
                         $team1_query = "SELECT name FROM teams WHERE id = " . $row['team1_id'];
                         $team1_result = $conn->query($team1_query);
                         $team1_name = $team1_result->fetch_assoc()['name'];

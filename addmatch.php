@@ -18,9 +18,19 @@
 
         $score1 = $_POST["score1"];
         $name1 = $_POST["name1"];
+<<<<<<< Updated upstream
 
         $score2 = $_POST["score2"];
         $name2 = $_POST["name2"];
+=======
+        
+        $logo1 = $_FILES["logo1"]["name"];
+
+        $score2 = $_POST["score2"];
+        $name2 = $_POST["name2"];
+        
+        $logo2 = $_FILES["logo2"]["name"];
+>>>>>>> Stashed changes
 
 
         // Query untuk insert data ke tabel matches
@@ -47,6 +57,7 @@
     <div class="nav">
         <a href="index.php"><button class="back"><img src="image/panah 1.png" alt="back" class="panah"></button></a>
     </div>
+    <form action="" method="post">
     <div class="container">
         <h1 class="header">Add New Match</h1>
         <form action="" method="post">
@@ -61,12 +72,17 @@
             </div>
         </div>
         <hr>
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
         <div class="tim">
             <div class="kiri">
                 <label for="score">Score :</label>
                 <input type="text" id="score" name="score1">
                 <p class="font-weight: normal;">Team</p>
                 <label for="name" class="label">Name</label>
+<<<<<<< Updated upstream
                 <select id="name" name="name1">
                     <?php
                         // Loop through the team results and generate options
@@ -75,12 +91,18 @@
                         }
                     ?>
                 </select>
+=======
+                <input type="text" id="name" name="name1">
+                <label for="logo" class="label">Logo</label>
+                <input type="file" id="logo" name="logo1">
+>>>>>>> Stashed changes
             </div>
             <div class="kanan">
                 <label for="score">Score :</label>
                 <input type="text" id="score" name="score2">
                 <p>Team</p>
                 <label for="name" class="label">Name</label>
+<<<<<<< Updated upstream
                 <select id="name" name="name2">
                     <?php
                         // Loop through the team results and generate options
@@ -89,6 +111,11 @@
                         }
                     ?>
                 </select>
+=======
+                <input type="text" id="name" name="name2">
+                <label for="logo" class="label">Logo</label>
+                <input type="file" id="logo" name="logo2">
+>>>>>>> Stashed changes
             </div>
         </div>
         <button type="submit" name="submit">Save</button>

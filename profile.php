@@ -1,21 +1,13 @@
 <?php
-    session_start();
-    include 'db.php';
-    if(!isset($_SESSION["login"])){
-        header("Location: login.php");
-        exit;
-    }
+session_start();
+include 'db.php';
 
-    $username = $_SESSION["username"];
-    $user = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
-    $row = mysqli_fetch_assoc($user);
-    $id = $row["id_user"];
-    $useruid = $row["username"];
-    $email = $row["email"];
-    $password = $row["password"];
-    $photo = $row["photo"];
-    $role = $row["role"];
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 
+<<<<<<< Updated upstream
     if(isset($_POST['submit'])){
         $user_id = $_POST['user_id'];
         $username = $_POST['username'];
@@ -36,9 +28,46 @@
                 echo "<script>alert('Gagal!');
                 window.location.href='register.php';</script>";
             }
+=======
+$username = $_SESSION["username"];
+$user = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+$row = mysqli_fetch_assoc($user);
+$user_id = $row["id_user"];
+$email = $row["email"];
+$photo = $row["photo"];
+$role = $row["role"];
+
+if (isset($_POST['update'])) {
+    $newUsername = $_POST['username'];
+    $newEmail = $_POST['email'];
+    $newPassword = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    if ($newPassword != $confirmPassword) {
+        echo "<script>alert('Password tidak sama');</script>";
+    } else {
+        $query = "UPDATE users SET email='$newEmail', username='$newUsername', password='$hashedPassword' WHERE id_user='$user_id'";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            echo "<script>alert('Profil berhasil diperbarui!');</script>";
+        } else {
+            echo "<script>alert('Gagal memperbarui profil!');</script>";
+>>>>>>> Stashed changes
         }
     }
+}
 
+if (isset($_POST['delete'])) {
+    $queryDelete = "DELETE FROM users WHERE id_user='$user_id'";
+    $resultDelete = mysqli_query($conn, $queryDelete);
+    if ($resultDelete) {
+        echo "<script>alert('Profil berhasil dihapus!'); window.location.href='login.php';</script>";
+        exit;
+    } else {
+        echo "<script>alert('Gagal menghapus profil!');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +87,8 @@
         <form action="" method="post" enctype="multipart/form-data">
             <div class="my-profile">
                 <p>My Profile</p>
-                <button type="submit" class="save" name="submit">Save</button>
+                <button type="submit" class="save" name="update">Save</button>
+                <button type="submit" class="delete" name="delete">Delete</button>
             </div>
             <div class="card">
                 <div class="image">
