@@ -6,23 +6,29 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Tangkap data dari formulir
-    $teamName = $_POST["teamName"];
-    $teamLogo = $_FILES["teamLogo"]["name"];
+if (isset($_POST["submit"])) {
+    // Check if the file was uploaded successfully
+    if (isset($_FILES["teamLogo"]) && $_FILES["teamLogo"]["error"] == 0) {
+        $teamName = $_POST["teamName"];
+        $teamLogo = $_FILES["teamLogo"]["name"];
+        $teamLogoTmp = $_FILES["teamLogo"]["tmp_name"];
+        $uploadPath = "image/" . $teamLogo;
 
-    // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
-    $teamLogoTargetDir = "uploads/team_logos/";
-    $teamLogoTargetFile = $teamLogoTargetDir . basename($_FILES["teamLogo"]["name"]);
-    move_uploaded_file($_FILES["teamLogo"]["tmp_name"], $teamLogoTargetFile);
+        // Move uploaded image to the image folder
+        move_uploaded_file($teamLogoTmp, $uploadPath);
 
-    // Query untuk insert data ke tabel teams
-    $sql = "INSERT INTO teams (name, logo) VALUES ('$teamName', '$teamLogo')";
+        // Insert data into the database
+        $query = "INSERT INTO teams (name, logo) VALUES ('$teamName', '$uploadPath')";
+        $result = mysqli_query($conn, $query);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Tim berhasil ditambahkan.";
+        if ($result) {
+            echo "<script>alert('Data added successfully.')</script>";
+        } else {
+            $error_message = mysqli_error($conn);
+            echo "<script>alert('Error: $error_message')</script>";
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "<script>alert('Error uploading file.')</script>";
     }
 }
 ?>
@@ -42,11 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
     <div class="container">
         <h1>Add New Tim</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <label for="name">Name</label>
-            <input type="text" id="name">
+            <input type="text" id="name" name="teamName">
             <label for="foto">Logo</label>
-            <input type="file" id="foto">
+            <input type="file" id="foto" name="teamLogo">
+            <button type="submit" name="submit">Add</button>
         </form>
     </div>
 </body>

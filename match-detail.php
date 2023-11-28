@@ -1,5 +1,10 @@
 <?php
+session_start();
 include 'db.php';
+if(!isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+}
 
 $query = "SELECT * FROM teams";
 $result = $conn->query($query);
@@ -17,7 +22,7 @@ $result = $conn->query($query);
 <body>
     <div class="bagian1">
         <div class="back">
-            <a href=""><button><img src="image/panah 1.png" alt=""></button></a>
+            <a href="matches.php"><button><img src="image/panah 1.png" alt=""></button></a>
         </div>
         <div class="content">
             <img src="image/atlet tim 1.png" alt="atlet tim1" class="atlet1">

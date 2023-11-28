@@ -5,36 +5,29 @@
     if(!isset($_SESSION["username"])){
         header("Location: login.php");
     }
+    
+    $teamQuery = "SELECT id, name FROM teams";
+    $teamResult = $conn->query($teamQuery);
+    $teamQuery2 = "SELECT id, name FROM teams";
+    $teamResult2 = $conn->query($teamQuery2);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["submit"])) {
         // Tangkap data dari formulir
         $date = $_POST["date"];
         $location = $_POST["location"];
 
         $score1 = $_POST["score1"];
         $name1 = $_POST["name1"];
-        // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
-        $logo1 = $_FILES["logo1"]["name"];
 
         $score2 = $_POST["score2"];
         $name2 = $_POST["name2"];
-        // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
-        $logo2 = $_FILES["logo2"]["name"];
 
-        // Upload file logo1
-        $target_dir = "uploads/";
-        $target_file1 = $target_dir . basename($_FILES["logo1"]["name"]);
-        move_uploaded_file($_FILES["logo1"]["tmp_name"], $target_file1);
-
-        // Upload file logo2
-        $target_file2 = $target_dir . basename($_FILES["logo2"]["name"]);
-        move_uploaded_file($_FILES["logo2"]["tmp_name"], $target_file2);
 
         // Query untuk insert data ke tabel matches
-        $sql = "INSERT INTO matches (team1_score, team1_name, team1_logo, team2_score, team2_name, team2_logo, match_date, location) VALUES ('$score1', '$name1', '$logo1', '$score2', '$name2', '$logo2', '$date', '$location')";
+        $sql = "INSERT INTO matches (team1_id, team2_id, score_team1, score_team2, time, location) VALUES ('$name1', '$name2', '$score1', '$score2', '$date', '$location')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Pertandingan berhasil ditambahkan.";
+            echo "<script>alert('Match Added Successfully!')</script>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -56,6 +49,7 @@
     </div>
     <div class="container">
         <h1 class="header">Add New Match</h1>
+        <form action="" method="post">
         <div class="row">
             <div class="time">
                 <label for="date">Select A Time</label>
@@ -67,25 +61,34 @@
             </div>
         </div>
         <hr>
-        <form action="" method="post">
         <div class="tim">
             <div class="kiri">
                 <label for="score">Score :</label>
-                <input type="text" id="score" name="score">
+                <input type="text" id="score" name="score1">
                 <p class="font-weight: normal;">Team</p>
                 <label for="name" class="label">Name</label>
-                <input type="text" id="name" name="score">
-                <label for="logo" class="label">Logo</label>
-                <input type="file" id="logo" name="logo">
+                <select id="name" name="name1">
+                    <?php
+                        // Loop through the team results and generate options
+                        while ($teamRow = $teamResult->fetch_assoc()) {
+                            echo "<option value='{$teamRow['id']}'>{$teamRow['name']}</option>";
+                        }
+                    ?>
+                </select>
             </div>
             <div class="kanan">
                 <label for="score">Score :</label>
-                <input type="text" id="score" name="score">
+                <input type="text" id="score" name="score2">
                 <p>Team</p>
                 <label for="name" class="label">Name</label>
-                <input type="text" id="name" name="score">
-                <label for="logo" class="label">Logo</label>
-                <input type="file" id="logo" name="logo">
+                <select id="name" name="name2">
+                    <?php
+                        // Loop through the team results and generate options
+                        while ($teamRow2 = $teamResult2->fetch_assoc()) {
+                            echo "<option value='{$teamRow2['id']}'>{$teamRow2['name']}</option>";
+                        }
+                    ?>
+                </select>
             </div>
         </div>
         <button type="submit" name="submit">Save</button>

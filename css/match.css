@@ -15,6 +15,7 @@ body {
   background-color: #fff;
   height: 80px;
   text-align: center;
+  z-index: -1;
 }
 
 .back {
@@ -86,35 +87,35 @@ body {
 }
 
 .title p {
-    color: #fff;
-    font-family: IBM Plex Serif;
-    font-size: 70px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: capitalize;
-    margin-bottom: 5px;
-    margin-left: 10px;
+  color: #fff;
+  font-family: IBM Plex Serif;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
-.add a{
+.add a {
   text-decoration: none;
   width: 116px;
   align-items: center;
   color: #000;
-  font-family: 'Forum';
+  font-family: "Forum";
   font-size: 23px;
   display: flex;
   align-items: center;
 }
 
 .tabel {
-    width: 100%;
-    margin: auto;
-    background-color: #fff;
-    border-radius: 10px;
-    color: #fff;
-    min-height: 60vh;
+  width: 100%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  color: #fff;
+  min-height: 60vh;
 }
 table {
   width: 100%;
@@ -123,46 +124,109 @@ table {
 }
 
 th {
-    color: #000;
-    font-family: 'Franklin Gothic medium', sans-serif;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: capitalize;
-    border-bottom: 1px solid #000;
-    height: 52px;
-    text-align: center;
+  color: #000;
+  font-family: "Franklin Gothic medium", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  border-bottom: 1px solid #000;
+  height: 52px;
+  text-align: center;
 }
 
 td {
-    color: #000;
-    font-family: 'Andada Pro', serif;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: capitalize;
-    height: 52px;
-    text-align: center;
+  color: #000;
+  font-family: "Andada Pro", serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  height: 52px;
+  text-align: center;
+  align-items: center;
 }
 
 .preview {
-    border-radius: 15px;
-    background-color: #FFE94E;
-    width: 10%;
+  border-radius: 15px;
+  background-color: #ffe94e;
+  width: 10%;
 }
 
 .add {
-    border-radius: 15px;
-    background-color: #FFE94E;
-    width: 116px;
-    height: 48px;
-    flex-shrink: 0;
-    border: none;
-    margin: 0px 0px 10px 20px;
+  border-radius: 15px;
+  background-color: #ffe94e;
+  width: 116px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  margin: 0px 0px 10px 20px;
 }
 
 .add img {
-    width: 42px;
+  width: 42px;
+}
+
+.inptext,
+input[type="time"] {
+  border-radius: 15px;
+  border: 1px solid #000;
+  background: #fff;
+  width: 90%;
+  height: 40px;
+  font-family: "Andada Pro";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+input[type="number"] {
+  border-radius: 15px;
+  border: 1px solid #000;
+  background: #fff;
+  width: 30%;
+  height: 40px;
+}
+
+.edit {
+  background-color: #c6ff4e;
+  color: #000;
+  font-family: "Franklin Gothic";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fb2c10;
+  color: #000;
+  cursor: pointer;
+  font-family: "Franklin Gothic";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.score {
+  width: 9%;
+}
+
+.club-image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }

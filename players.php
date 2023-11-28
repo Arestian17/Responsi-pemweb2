@@ -64,6 +64,11 @@ $row2 = mysqli_fetch_array($result2);
         echo '</div>';
         echo '</div>';
     }
+    if($result->num_rows == 0){
+        echo '<div class="kosong">';
+        echo '<button class="addplayer"><a href="addPlayers.php?id=' . $id_tim . '">Add Player</a></button>';
+        echo '</div>';
+    }
     ?>
     </div>
 

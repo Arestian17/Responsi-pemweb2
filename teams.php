@@ -10,12 +10,30 @@
     $result = $conn->query($query);
 
     if(isset($_POST['submit'])){
-        $poin = $_POST['poin'];
-        $id = $_POST['id'];
-        $updateQuery = "UPDATE teams SET poin = '$poin' WHERE id = '$id'";
-        $result = $conn->query($updateQuery);
+        $ids = $_POST['id'];
+        $poins = $_POST['poin'];
+
+        // Loop through each ID and Poin to perform the update
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            $poin = $poins[$i];
+
+            $updateQuery = "UPDATE teams SET poin = '$poin' WHERE id = '$id'";
+            $result = $conn->query($updateQuery);
+        }
+    }
+
+    if(isset($_POST['delete'])){
+        $del = $_POST['delete'];
+        $deleteQuery = "DELETE FROM teams WHERE id = '$del'";
+        $result = $conn->query($deleteQuery);
+        if($result){
+            echo '<script>alert("Deleted Successfully"); document.location="teams.php";</script>';
+            exit();
+        }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,8 +72,8 @@
             </table>
         <?php endif; ?>
         <?php if(isset($_SESSION['admin'])) : ?>
+            <a href="addtim.php" style="font-family: 'Andada Pro'; font-size: 25px;"><button name="add" class="add">Add Teams</button></a>
             <form action="" method="post">
-            <a href="addtim.php"><button type="submit" name="add" class="add">Add Teams</button></a>
             <table>
                 <tr>
                     <th>No</th>
@@ -65,14 +83,15 @@
                     <th>Action</th>
                 </tr>
                 <?php
+                $result = $conn->query($query); // Reset result set
                 $no = 1;
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td><input type='text' name='id' value=".$row['id']." hidden>" . $no . "</td>";
+                        echo "<td><input type='text' name='id[]' value=".$row['id']." hidden>" . $no . "</td>";
                         echo "<td><img src='" . $row['logo'] . "' alt='tim'></td>";
                         echo "<td><a href='players.php?id=" . $row['id'] . "'>" . $row['name'] . "</a></td>";
-                        echo "<td><input type='number' name='poin' value=".$row['poin']."></td>";
-                        echo "<td><button type='submit' name='submit' class='edit'>Edit</button> <a href='delete.php?id=" . $row['id'] . "'><button class='delete'>Delete</button></a></td>";
+                        echo "<td><input type='number' name='poin[]' value=".$row['poin']."></td>";
+                        echo "<td><button type='submit' name='submit' class='edit'>Edit</button> <button type='submit' name='delete' class='delete' value='".$row['id']."'>Delete</button></td>";
                         echo "</tr>";
                         $no++;
                     }
@@ -81,6 +100,5 @@
             </form>
         <?php endif; ?>
     </div>
-    
 </body>
 </html>

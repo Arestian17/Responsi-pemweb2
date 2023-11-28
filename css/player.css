@@ -145,5 +145,8 @@ hr {
     text-decoration: none;
     font-family: 'Franklin Gothic', sans-serif;
     font-size: 22px;
+}
 
+.kosong button {
+    margin-top: 100px;
 }

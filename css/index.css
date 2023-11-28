@@ -399,5 +399,14 @@ footer {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
 
+.update {
+  color: #000;
+  font-family: 'franklin gothic';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
 }

@@ -113,7 +113,7 @@ $video3 = $conn->query("SELECT * FROM video ORDER BY id DESC LIMIT 1 OFFSET 2")-
             </div>
         </div>
         <?php if(isset($_SESSION["admin"])) : ?>
-            <button type="submit" name="submit">Submit</button>
+            <button type="submit" name="submit" class="update">Update</button>
         <?php endif ?>
         </form>
     </div>

@@ -17,6 +17,7 @@
     $role = $row["role"];
 
     if(isset($_POST['submit'])){
+        $user_id = $_POST['user_id'];
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -26,13 +27,13 @@
         if($password != $confirm_password){
             echo "<script>alert('Sandi tidak sama');</script>";
         }else {
-            $query = "UPDATE users SET email='$email', username='$username', password='$hashed_password' WHERE id='$user_id'";
+            $query = "UPDATE users SET email='$email', username='$username', password='$hashed_password' WHERE id_user='$user_id'";
             $result = mysqli_query($conn, $query);
             if($result){
-                echo "<script>alert('Berhasil mendaftar!');
-                window.location.href='login.php';</script>";
+                echo "<script>alert('Berhasil!');
+                </script>";
             }else{
-                echo "<script>alert('Gagal mendaftar!');
+                echo "<script>alert('Gagal!');
                 window.location.href='register.php';</script>";
             }
         }
@@ -66,6 +67,7 @@
                 </div>
                 <div class="input">
                     <div class="kiri">
+                        <input type="text" name=user_id value="<?php echo $id;?>" hidden>
                         <input type="file" id="image" name="photo" value="<?php echo $photo; ?>" style="display: none;">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" value="<?php echo $username; ?>">
@@ -86,7 +88,7 @@
                         }
                     ?>
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" value="<?php echo $password; ?>">
+                        <input type="password" id="confirmpassword" name="confirm_password" value="<?php echo $password; ?>">
                     </div>
                 </div>
             </div>

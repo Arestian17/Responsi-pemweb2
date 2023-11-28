@@ -4,7 +4,11 @@ session_start();
 
 if (!isset($_SESSION["username"])) {
     header("Location: login.php");
+    exit();
 }
+
+$teamQuery = "SELECT id, name FROM teams";
+$teamResult = $conn->query($teamQuery);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Tangkap data dari formulir
@@ -14,25 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST["age"];
     $height = $_POST["height"];
     $weight = $_POST["weight"];
-
-    // Jangan lupa mengganti 'nama_tabel' sesuai dengan nama tabel yang sesuai dalam database Anda
-    $foto = $_FILES["foto"]["name"];
+    $tim = $_POST["tim"];
 
     // Upload file foto
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
-    move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
+    $target_dir = "image/";
+    $foto = $_FILES["foto"]["name"];
+    $foto_path = $target_dir . basename($foto);
+    move_uploaded_file($_FILES["foto"]["tmp_name"], $foto_path);
 
     // Query untuk insert data ke tabel players
-    $sql = "INSERT INTO players (name, number, nation, age, height, weight, photo) VALUES ('$name', '$number', '$nation', '$age', '$height', '$weight', '$foto')";
+    $sql = "INSERT INTO players (name, team_id, number, nation, age, height, weight, photo) 
+            VALUES ('$name', '$tim', '$number', '$nation', '$age', '$height', '$weight', '$foto_path')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Pemain berhasil ditambahkan.";
+        echo "<script>alert('Pemain berhasil ditambahkan.');</script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         input[type="number"],
         input[type="text"],
-        input[type="file"] {
+        input[type="file"],
+        select {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -123,21 +129,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
     <div class="container">
         <h1>Add new Player</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <label for="name">Name</label>
-            <input type="text" id="name">
+            <input type="text" id="name" name="name">
+            <label for="tim">Tim</label>
+            <select name="tim" id="tim">
+                <?php
+                    // Loop through the team results and generate options
+                    while ($teamRow = $teamResult->fetch_assoc()) {
+                        echo "<option value='{$teamRow['id']}'>{$teamRow['name']}</option>";
+                    }
+                ?>
+            </select>
             <label for="number">Number</label>
-            <input type="number" id="number">
+            <input type="number" id="number" name="number">
             <label for="nation">Nation</label>
-            <input type="text" id="nation">
+            <input type="text" id="nation" name="nation">
             <label for="age">Age</label>
-            <input type="number" id="number">
+            <input type="number" id="number" name="age">
             <label for="height">Height</label>
-            <input type="number" id="height">
+            <input type="number" id="height" name="height">
             <label for="weight">weight</label>
-            <input type="number" id="weight">
+            <input type="number" id="weight" name="weight">
             <label for="foto">Photo</label>
-            <input type="file" id="foto">
+            <input type="file" id="foto" name="foto">
+            <button type="submit" name="submit">Add</button>
         </form>
     </div>
 </body>

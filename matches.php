@@ -6,9 +6,19 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
 }
 
-$query = "SELECT * FROM matches ORDER BY id ASC";
+$query = "SELECT * FROM matches ORDER BY id DESC";
 $result = $conn->query($query);
 
+
+if(isset($_POST['delete'])){
+    $del = $_POST['delete'];
+    $deleteQuery = "DELETE FROM matches WHERE id = '$del'";
+    $result = $conn->query($deleteQuery);
+    if($result){
+        echo '<script>alert("Deleted Successfully"); document.location="matches.php";</script>';
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +44,7 @@ $result = $conn->query($query);
             <img src="image/search 1.png" alt="search" class="logo-search">
         </div>
         <div class="profile">
-            <a href="profile.php"><img src="image/atlet tim 1.png" alt="profile"></a>
+            <a href="profile.php"><img src="image/foto-profil.jpg" alt="profile"></a>
         </div>
     </div>
     <div class="container">
@@ -70,12 +80,12 @@ $result = $conn->query($query);
                         $team2_result = $conn->query($team2_query);
                         $team2_name = $team2_result->fetch_assoc()['name'];
 
-                        echo '<td>' . $team1_name . '</td>';
+                        echo '<td>' . $team1_name .' ' . '<img src="image/club1.png" class="club-image"></td>';
                         echo '<td>' . $row['score_team1'] . ' : ' . $row['score_team2'] . '</td>';
-                        echo '<td>' . $team2_name . '</td>';
+                        echo '<td>' . $team2_name .' ' . '<img src="image/club2.png" class="club-image"></td>';
                         echo '<td>' . $row['time'] . '</td>';
                         echo '<td>' . $row['location'] . '</td>';
-                        echo '<td class="preview">' . $row['preview'] . '</td>';
+                        echo '<td class="preview"><a href="match-detail.php" style="text-decoration: none; color:#000;">' . $row['preview'] . '</a></td>';
                         echo '</tr>';
                         $no++;
                     }
@@ -101,7 +111,7 @@ $result = $conn->query($query);
                     $no = 1;
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<tr>';
-                        echo '<td><input type="text" name="id[]" value="' . $row['id'] . '" hidden>' . $no . '</td>';
+                        echo '<td><a href="match-detail.php" style="text-decoration: none;"><input type="text" name="id[]" value="' . $row['id'] . '" hidden>' . $no . '</a></td>';
                         $team1_query = "SELECT name FROM teams WHERE id = " . $row['team1_id'];
                         $team1_result = $conn->query($team1_query);
                         $team1_name = $team1_result->fetch_assoc()['name'];
@@ -110,13 +120,13 @@ $result = $conn->query($query);
                         $team2_result = $conn->query($team2_query);
                         $team2_name = $team2_result->fetch_assoc()['name'];
 
-                        echo '<td><input type="text" name="team1_name[]" value="' . $team1_name . '"></td>';
-                        echo '<td><input type="text" name="score_team1[]" value="' . $row['score_team1'] . '"> : <input type="text" name="score_team2[]" value="' . $row['score_team2'] . '"></td>';
-                        echo '<td><input type="text" name="team2_name[]" value="' . $team2_name . '"></td>';
-                        echo '<td><input type="text" name="time[]" value="' . $row['time'] . '"></td>';
-                        echo '<td><input type="text" name="location[]" value="' . $row['location'] . '"></td>';
-                        echo '<td><input type="text" name="preview[]" value="' . $row['preview'] . '"></td>';
-                        echo '<td><button type="submit" name="submit">Edit</button> <a href="delete.php?id=' . $row['id'] . '"><button>Delete</button></a></td>';
+                        echo '<td><input type="text" class="inptext" name="team1_name[]" value="' . $team1_name . '"></td>';
+                        echo '<td class="score"><input type="number" name="score_team1[]" value="' . $row['score_team1'] . '"> : <input type="number" name="score_team2[]" value="' . $row['score_team2'] . '"></td>';
+                        echo '<td><input type="text" class="inptext" name="team2_name[]" value="' . $team2_name . '"></td>';
+                        echo '<td><input type="time" name="time[]" value="' . $row['time'] . '"></td>';
+                        echo '<td><input type="text" class="inptext" name="location[]" value="' . $row['location'] . '"></td>';
+                        echo '<td><input type="text" class="inptext" name="preview[]" value="' . $row['preview'] . '" style="background-color: #FFE94E; border:none;"></td>';
+                        echo '<td style="width:15%;"><button type="submit" name="submit"class="edit">Edit</button> <a href="delete.php?id=' . $row['id'] . '"><button class="delete" name="delete">Delete</button></a></td>';
                         echo '</tr>';
                         $no++;
                     }
@@ -149,3 +159,4 @@ $result = $conn->query($query);
 </body>
 
 </html>
+
