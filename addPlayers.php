@@ -121,6 +121,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="file"] {
             cursor: pointer;
         }
+
+        button[type="submit"] {
+            width: 86px;
+            height: 38px;
+            flex-shrink: 0;
+            border-radius: 5px;
+            border: 1px solid #000;
+            background: #FFE94E;
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            text-transform: capitalize;
+        }
     </style>
 </head>
 <body>
@@ -153,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" id="weight" name="weight">
             <label for="foto">Photo</label>
             <input type="file" id="foto" name="foto">
-            <button type="submit" name="submit">Add</button>
+            <button type="submit" name="submit">save</button>
         </form>
     </div>
 </body>

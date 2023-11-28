@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/addtim.css">
     <link rel="icon" href="image/voli.ico">
-    <title>Add Player</title>
+    <title>Add Tim</title>
 </head>
 <body>
     <nav>
@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
             <input type="text" id="name" name="teamName">
             <label for="foto">Logo</label>
             <input type="file" id="foto" name="teamLogo">
-            <button type="submit" name="submit">Add</button>
+            <button type="submit" name="submit">Save</button>
         </form>
     </div>
 </body>
